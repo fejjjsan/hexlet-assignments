@@ -14,7 +14,6 @@ class App {
                 .filter(s -> s.startsWith("environment"))
                 .map(s -> s.replaceAll("environment=", ""))
                 .map(s -> s.replaceAll("\"", ""))
-                .map(s -> s.replaceAll("language=en", ""))
                 .map(s -> s.replaceAll(",", " "))
                 .map(s -> s.split(" "))
                 .flatMap(Arrays::stream)
