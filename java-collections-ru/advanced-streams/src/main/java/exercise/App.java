@@ -11,6 +11,7 @@ class App {
     public static String getForwardedVariables(String file) {
 
         return (String) Arrays.stream(file.split("\n"))
+                .peek(s -> System.out.println(s))
                 .filter(s -> s.startsWith("environment"))
                 .map(s -> s.replaceAll("environment=", ""))
                 .map(s -> s.replaceAll("\"", ""))
@@ -20,7 +21,6 @@ class App {
                 .filter(s -> s.startsWith("X_FORWARDED_"))
                 .map(s -> s.replaceAll("X_FORWARDED_", ""))
                 .map(s -> s.trim())
-                .peek(s -> System.out.println(s))
                 .collect(Collectors.joining(","));
     }
 }
