@@ -15,7 +15,9 @@
             </div>
         @else
             <div class="row">
-                <a class="btn btn-primary mt-3" href="${NamedRoutes.buildSessionPath()}">Войти</a>
+                <form action="${NamedRoutes.buildSessionPath()}" method="get">
+                    <button type="submit" class="btn btn-primary mt-3">Войти</button>
+                </form>
             </div>
         @endif
     </div>
