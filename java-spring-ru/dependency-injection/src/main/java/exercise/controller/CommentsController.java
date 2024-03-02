@@ -61,12 +61,11 @@ public class CommentsController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Comment delete(@PathVariable long id) {
+    public void delete(@PathVariable long id) {
         var comment = commentRepository.findById(id);
 
         if (comment.isPresent()) {
             commentRepository.deleteById(id);
-            return comment.get();
         } else {
            throw new ResourceNotFoundException("Comment with id " + id + " not found");
         }

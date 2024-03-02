@@ -61,7 +61,7 @@ public class PostsController {
     }
 
     @DeleteMapping("/{id}")
-    public Post delete(@PathVariable long id) {
+    public void delete(@PathVariable long id) {
         var post = postRepository.findById(id);
 
         if (post.isPresent()) {
@@ -70,8 +70,6 @@ public class PostsController {
         } else {
             throw new ResourceNotFoundException("Post with id " + id + " not found");
         }
-
-        return post.get();
     }
 }
 // END
