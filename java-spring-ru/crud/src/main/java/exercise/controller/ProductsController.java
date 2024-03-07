@@ -60,10 +60,7 @@ public class ProductsController {
     @ResponseStatus(HttpStatus.CREATED)
     ProductDTO create(@Valid @RequestBody ProductCreateDTO dto) {
         var product = productMapper.map(dto);
-        var category = referenceMapper.toEntity(dto.getCategoryId(), Category.class);
-        product.setCategory(category);
         productRepository.save(product);
-
         return productMapper.map(product);
     }
 
@@ -73,8 +70,6 @@ public class ProductsController {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
         productMapper.update(dto, product);
-        var category = referenceMapper.toEntity(dto.getCategoryId().get(), Category.class);
-        product.setCategory(category);
         productRepository.save(product);
 
         return productMapper.map(product);
