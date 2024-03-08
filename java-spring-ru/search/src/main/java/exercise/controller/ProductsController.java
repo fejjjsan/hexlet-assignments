@@ -46,9 +46,7 @@ public class ProductsController {
         var spec = productSpecification.build(params);
 
         var posts = productRepository.findAll(spec, PageRequest.of(page - 1, 10));
-        var result = posts.map(productMapper::map)
-                .stream()
-                .toList();
+        var result = posts.map(productMapper::map).toList();
         return result;
     }
     // END
